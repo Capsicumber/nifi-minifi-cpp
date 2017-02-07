@@ -328,7 +328,7 @@ endif()
 ### Extras
 ###
 if(YAML_CPP_BUILD_TOOLS)
-	add_subdirectory(test)
+	## add_subdirectory(test) # TODO Temporarily commented out to avoid conflict with googletest
 	add_subdirectory(util)
 endif()
 
