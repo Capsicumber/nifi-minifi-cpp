@@ -17,6 +17,7 @@
 
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
+#include "../libminifi/include/TailFile.h"
 
 // Sanity test, does not use gmock
 TEST(Dummy, foobar) {
@@ -33,6 +34,10 @@ namespace {
 
         TailFileTest() {
             // You can do set-up work for each test here.
+
+            uuid_t uuid;
+            uuid_generate(uuid);  // Generate a random UUID
+            processor = new TailFile(TailFile::ProcessorName, uuid);
         }
 
         virtual ~TailFileTest() {
@@ -45,14 +50,20 @@ namespace {
         virtual void SetUp() {
             // Code here will be called immediately after the constructor (right
             // before each test).
+
+            // Setup
         }
 
         virtual void TearDown() {
             // Code here will be called immediately after each test (right
             // before the destructor).
+
+            // Cleanup
         }
 
         // Objects declared here can be used by all tests in the test case for TailFileTest.
+
+        Processor *processor = NULL;
     };
 
     // Tests that TailFileTest does Xyz.
